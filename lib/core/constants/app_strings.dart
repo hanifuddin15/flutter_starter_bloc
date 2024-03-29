@@ -202,4 +202,25 @@ class AppStrings {
   static const String newStatus = "newStatus";
   static const String oldCategory = "oldCategory";
   static const String newCategory = "newCategory";
+
+
+
+  // ToDo App Strings
+  static const String mainTitle = "My Tasks";
+  static const String deletedTaskMsg = "This task was deleted";
+  static const String doneAllTask = "You have done all tasks";
+  static const String addNew = "Add New ";
+  static const String update = "Update ";
+  static const String taskString = "Task";
+  static const String taskPlanQ = "What are you planning?";
+  static const String addNote = "Add Note";
+  static const String timeString = "Time";
+  static const String dateString = "Date";
+  static const String addTask = "Add Task";
+  static const String updateTask = "My Tasks";
+  static const String deleteTask = "Delete Task";
+  static const String oopSMsg = "Oops!!";
+  static const String areYouSure = "Are You Sure?";
+
+
 }
