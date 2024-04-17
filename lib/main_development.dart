@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'core/app/app.dart';
 import 'core/app/app_dependency.dart';
 import 'core/app/app_flavor.dart';
 import 'core/app_bloc_observer.dart';
+import 'firebase_options.dart';
 
 void main() async {
   //Init Widgets Binding
@@ -16,6 +18,18 @@ void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //Init easy localization
   await EasyLocalization.ensureInitialized();
+  // init Firebase
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform
+     // options: FirebaseOptions
+     //
+     //   (
+     //     apiKey: apiKey,
+     //     appId: appId,
+     //     messagingSenderId: messagingSenderId,
+     //     projectId: projectId
+     // ),
+  );
   //Init modules
   configureInjection();
   //Init app flavor
