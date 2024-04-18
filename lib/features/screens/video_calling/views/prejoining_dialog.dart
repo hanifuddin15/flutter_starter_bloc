@@ -58,49 +58,65 @@ class _PreJoiningDialogState extends State<PreJoiningDialog> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    // Button for enabling or disabling microphone
-    InkWell(
-      borderRadius: BorderRadius.circular(32),
-      onTap: () {
-        if (_isMicEnabled) {
-          setState(() => _isMicEnabled = false);
-        } else {
-          _getMicPermissions();
-        }
-      },
-      child: CircleAvatar(
-        backgroundColor: Colors.redAccent,
-        radius: 32.0,
-        child: Icon(
-          _isMicEnabled
-              ? Icons.mic_rounded
-              : Icons.mic_off_rounded,
-          size: 32,
-        ),
+    return AlertDialog(
+      title: Text('Pre-Joining Settings'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InkWell(
+            borderRadius: BorderRadius.circular(32),
+            onTap: () {
+              if (_isMicEnabled) {
+                setState(() => _isMicEnabled = false);
+              } else {
+                _getMicPermissions();
+              }
+            },
+            child: CircleAvatar(
+              backgroundColor: _isMicEnabled ? Colors.green : Colors.redAccent,
+              radius: 32.0,
+              child: Icon(
+                _isMicEnabled ? Icons.mic_rounded : Icons.mic_off_rounded,
+                size: 32,
+              ),
+            ),
+          ),
+          SizedBox(height: 16), // Adjust spacing between buttons
+          InkWell(
+            borderRadius: BorderRadius.circular(32),
+            onTap: () {
+              if (_isCameraEnabled) {
+                setState(() => _isCameraEnabled = false);
+              } else {
+                _getCameraPermissions();
+              }
+            },
+            child: CircleAvatar(
+              backgroundColor: _isCameraEnabled ? Colors.green : Colors.redAccent,
+              radius: 32.0,
+              child: Icon(
+                _isCameraEnabled ? Icons.videocam_rounded : Icons.videocam_off_rounded,
+                size: 32,
+              ),
+            ),
+          ),
+        ],
       ),
-    );
-
-// Button for enabling or disabling camera
-    InkWell(
-      borderRadius: BorderRadius.circular(32),
-      onTap: () {
-        if (_isCameraEnabled) {
-          setState(() => _isCameraEnabled = false);
-        } else {
-          _getCameraPermissions();
-        }
-      },
-      child: CircleAvatar(
-        backgroundColor: Colors.redAccent,
-        radius: 32.0,
-        child: Icon(
-          _isCameraEnabled
-              ? Icons.videocam_rounded
-              : Icons.videocam_off_rounded,
-          size: 32,
+      actions: [
+        TextButton(
+          onPressed: () {
+            // Add functionality for joining the channel
+            // For example, navigate to the channel with given token and name
+          },
+          child: Text('Join'),
         ),
-      ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // Close the dialog
+          },
+          child: Text('Cancel'),
+        ),
+      ],
     );
   }
 
@@ -108,4 +124,30 @@ class _PreJoiningDialogState extends State<PreJoiningDialog> {
 
 
 
+
 }
+
+// import 'package:flutter/cupertino.dart';
+//
+// class PreJoiningDialog extends StatefulWidget {
+//
+//
+//   const PreJoiningDialog({
+//
+//     super.key,
+//     required this.token,
+//     required this.channelName,
+// });
+//   final String token;
+//   final String channelName;
+//
+//   @override
+//   State<PreJoiningDialog> createState() => _PreJoiningDialogState();
+// }
+//
+// class _PreJoiningDialogState extends State<PreJoiningDialog> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }

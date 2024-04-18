@@ -1,15 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:meta/meta.dart';
+
 import 'package:unsplash_gallery/features/screens/video_calling/views/prejoining_dialog.dart';
 
 part 'video_calling_state.dart';
 
 class VideoCallingCubit extends Cubit<VideoCallingState> {
-  VideoCallingCubit() : super(VideoCallingInitial());
+  VideoCallingCubit() : super(VideoCallingState());
   late final TextEditingController channelNameController;
   late final TextEditingController channelDescriptionController;
 
@@ -43,26 +45,31 @@ class VideoCallingCubit extends Cubit<VideoCallingState> {
       debugPrint('Error generating token: $e');
     }
   }
+
+  //Channel Validator
   String? channelNameValidator(String? key){
      return key;
-     
+
   }
-  Future<void> _joinCall(context) async {
-    setState(() => _isJoining = true);
+
+  // Join Call
+  Future<void> joinCall(context) async {
+    emit(state.copyWith(isJoining: true));
     // Step 1
     await dotenv.load(fileName: "functions/.env");
     final appId = dotenv.env['APP_ID'];
     if (appId == null) {
       throw Exception('Please add your APP_ID to .env file');
     }
-    setState(() => _isJoining = false);
+    emit(state.copyWith(isJoining: false));
     if (context.mounted) {
       // Step 2
       Navigator.of(context).pop();
       // Step 3
       await Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => VideoCallPage(
+          builder: (context) =>
+              VideoCallPage(
             appId: appId,
             token: widget.token,
             channelName: widget.channelName,
