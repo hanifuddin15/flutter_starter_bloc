@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "682227481770",
+    "project_id": "myvchat-ff68c",
+    "storage_bucket": "myvchat-ff68c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682227481770:android:b56da3087c2e3b17d3a4d3",
+        "android_client_info": {
+          "package_name": "com.dinnova.unsplash_gallery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrrQbE7l5iHj_Yz3e7sqw2s3VUwe4U9rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
